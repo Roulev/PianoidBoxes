@@ -34,6 +34,8 @@
   background-color: #87ed7f;
 }
 
+
+
 .rightField {
   display: flex;
   flex-direction: column;
@@ -41,3 +43,9 @@
   height: 100%;
   background-color: #e55036;
 }
+
+
+
+
+
+

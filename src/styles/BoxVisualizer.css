@@ -1,0 +1,29 @@
+/* src/components/BoxVisualizer.css */
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .box {
+    display: flex;
+    height: 40px;
+    border: 2px solid #444;
+    background-color: #eee;
+    overflow: hidden;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #4caf50;
+    border-right: 1px solid #fff;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
