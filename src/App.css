@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;  
+  height: 100vh;
+  width: 100vw;
+  background-color: antiquewhite;  
+}
+
+.topBar {
+  display: flex;
+  height: 5%;
+  width: 100%;
+  background-color: #f3efef;
+}
+
+.container {
+  display: flex;  
+  height: 95%;
+  width: 100%;
+  background-color: #edb649;
+}
+
+.leftField {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 100%;
+  background-color: #87ed7f;
+}
+
+.rightField {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+  background-color: #e55036;
+}
