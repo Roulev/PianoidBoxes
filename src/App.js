@@ -14,7 +14,7 @@ function generateTestData() {
 }
 
 function App() {
-  const [data] = useState(generateTestData);        // генерируем один раз
+  const [data] = useState(generateTestData);        
   const boxes = useMemo(() => packIntoBoxes(data), [data]);
 
   return (
