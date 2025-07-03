@@ -23,7 +23,7 @@ function App() {
 
       <div className="container">
         <div className="leftField">
-          <h2>Матрицы</h2>
+          <h2>The Matrix</h2>
           <BoxVisualizer boxes={boxes} />
         </div>
 
