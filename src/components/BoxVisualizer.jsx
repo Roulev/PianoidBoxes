@@ -1,26 +1,34 @@
-// src/components/BoxVisualizer.jsx
-
-
 import '../styles/BoxVisualizer.css';
 
-function BoxVisualizer({ boxes }) {
+function BoxVisualizer({ boxes, stringLength: maxTotal }) {
   return (
     <div className="box-container">
       {boxes.map((box, i) => {
-        // box[0] — one matrix, which is an array of arrays
-        const flat = box[0].flat();          // 9 elements in one matrix
+        const matrix = box[0]; // 4x2 matrix
+        const totalLength = matrix.reduce((sum, [, point]) => sum + point, 0);
+        const isLastTooBig = totalLength > maxTotal;
+
         return (
           <div className="box" key={i}>
-            {flat.map(([stringNumber, point], j) => (
-              <div
-                key={j}
-                className="item"
-                style={{ width: `${(point / 130) * 100}%` }}  /* width 0–100% */
-                title={`string: ${stringNumber}, point: ${point}`}
-              >
-                {stringNumber}
-              </div>
-            ))}
+            {matrix.map(([stringNumber, point], j) => {
+              const isLast = j === matrix.length - 1;
+              const isRed = isLast && isLastTooBig;
+
+              const style = {
+                width: `${(point * 100) / maxTotal}%`,
+              };
+
+              return (
+                <div
+                  key={j}
+                  className={`item ${isRed ? 'item-red' : 'item-green'}`}
+                  style={style}
+                  title={`string: ${stringNumber}, point: ${point}`}
+                >
+                  {point}
+                </div>
+              );
+            })}
           </div>
         );
       })}
