@@ -1,5 +1,6 @@
 import './styles/App.css';
 import BoxVisualizer from './components/BoxVisualizer.jsx';
+import BoxStorage from './components/BoxStorage.jsx';
 import { packIntoBoxes } from './utils/pack.js';
 import { useState, useMemo, useEffect } from 'react';
 
@@ -18,6 +19,12 @@ function App() {
   const [sumLength, setSumLength] = useState(384); // 384 is the sum of all points in the test data
   const [dataLength, setDataLength] = useState(64); // 64 is the number of items in the test data
 
+  const [storage, setStorage] = useState([]); // Initialize storage
+
+  const handleMoveToStorage = (item) => {
+    setStorage((prev) => [...prev, item]);
+  };
+
   useEffect(() => {
     console.log('Boxes packed:', boxes);
   }, [boxes]);
@@ -30,12 +37,13 @@ function App() {
 
       <div className="container">
         <div className="leftField">
-          <h2>The Matrix</h2>
-          <BoxVisualizer boxes={boxes} stringLength={sumLength} />
+          <h2>The Boxes</h2>
+          <BoxVisualizer boxes={boxes} stringLength={sumLength} onDoubleClick={handleMoveToStorage} />
         </div>
 
         <div className="rightField">
-          <h2>Change Parameters</h2>
+          <h2>Starage</h2>
+          <BoxStorage items={storage} />
         </div>
       </div>
     </div>
