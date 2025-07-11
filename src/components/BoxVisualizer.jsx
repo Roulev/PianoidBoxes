@@ -10,8 +10,8 @@ function BoxVisualizer({ boxes, stringLength, onDoubleClick }) {
 
         return (
           <div className="box" key={i}>
-            {matrix.map(([stringNumber, point], j) => {
-              const isLast = j === matrix.length - 1;
+            {matrix.map(([stringNumber, point], index) => {
+              const isLast = index === matrix.length - 1;
               const isRed = isLast && isLastTooBig;
 
               const style = {
@@ -20,11 +20,11 @@ function BoxVisualizer({ boxes, stringLength, onDoubleClick }) {
 
               return (
                 <div
-                  key={j}
+                  key={index}
                   className={`item ${isRed ? 'item-red' : 'item-green'}`}
                   style={style}
                   title={`string: ${stringNumber}, point: ${point}`}
-                  onDoubleClick={() => onDoubleClick?.([stringNumber, point])}
+                  onDoubleClick={() => onDoubleClick?.([stringNumber, point], index)}
                 >
                   {point}
                 </div>
