@@ -17,16 +17,22 @@ function App() {
   const [boxes, setBoxes] = useState(() => packIntoBoxes(data)); // Initialize boxes with packed data
   const [storage, setStorage] = useState([]); // Initialize storage
 
-
   const [sumLength, setSumLength] = useState(384); // 384 is the sum of all points in the test data
   const [dataLength, setDataLength] = useState(64); // 64 is the number of items in the test data
 
+  const handleMoveToStorage = (item, itemIdx, boxIdx) => {
+    setStorage((prev) => [...prev, item]);
 
-  const handleMoveToStorage = (item, index) => {
-    setStorage((previosStorage) => [...previosStorage, item]);
+    setBoxes((prevBoxes) => {
+      const next = prevBoxes.map((box, idx) => {
+        if (idx !== boxIdx) return box;
 
+        const newMatrix = box[0].filter((_, i) => i !== itemIdx);
+        return [newMatrix];
+      });
 
-    
+      return next.filter(Boolean);
+    });
   };
 
   // useEffect(() => {
@@ -42,7 +48,11 @@ function App() {
       <div className="container">
         <div className="leftField">
           <h2>The Boxes</h2>
-          <BoxVisualizer boxes={boxes} stringLength={sumLength} onDoubleClick={handleMoveToStorage} />
+          <BoxVisualizer
+            boxes={boxes}
+            stringLength={sumLength}
+            onDoubleClick={handleMoveToStorage}
+          />
         </div>
 
         <div className="rightField">
