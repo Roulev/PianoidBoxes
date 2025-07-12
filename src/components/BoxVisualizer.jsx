@@ -5,7 +5,7 @@ function BoxVisualizer({ boxes, stringLength, onDoubleClick }) {
   return (
     <div className="box-container">
       {boxes.map((box, boxIdx) => {
-        const matrix      = box[0];
+        const matrix      = box;
         const totalLength = matrix.reduce((s, [, p]) => s + p, 0);
         const isLastTooBig = totalLength > stringLength;
 

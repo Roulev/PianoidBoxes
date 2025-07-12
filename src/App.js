@@ -1,43 +1,42 @@
 import './styles/App.css';
 import BoxVisualizer from './components/BoxVisualizer.jsx';
 import BoxStorage from './components/BoxStorage.jsx';
-import { packIntoBoxes } from './utils/pack.js';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function generateTestData() {
   const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-  return Array.from({ length: 64 }, () =>
+  return Array.from({ length: 5 }, () =>
     Array.from({ length: 4 }, () => [rand(1, 88), rand(35, 150)])
   );
 }
 
 function App() {
   const [data] = useState(generateTestData);
-  const [boxes, setBoxes] = useState(() => packIntoBoxes(data)); // Initialize boxes with packed data
-  const [storage, setStorage] = useState([]); // Initialize storage
+  const [boxes, setBoxes] = useState(data); // Initialize with test data
+  const [storage, setStorage] = useState([]); // Storage for moved items
 
-  const [sumLength, setSumLength] = useState(384); // 384 is the sum of all points in the test data
-  const [dataLength, setDataLength] = useState(64); // 64 is the number of items in the test data
+  const [sumLength, setSumLength] = useState(384);
 
   const handleMoveToStorage = (item, itemIdx, boxIdx) => {
+    // Add item in Storage
     setStorage((prev) => [...prev, item]);
 
+    // Updating boxes
     setBoxes((prevBoxes) => {
-      const next = prevBoxes.map((box, idx) => {
+      return prevBoxes.map((box, idx) => {
         if (idx !== boxIdx) return box;
 
-        const newMatrix = box[0].filter((_, i) => i !== itemIdx);
-        return [newMatrix];
+        // Delete item by index
+        const newMatrix = box.filter((_, i) => i !== itemIdx);
+        return newMatrix;
       });
-
-      return next.filter(Boolean);
     });
   };
 
-  // useEffect(() => {
-  //   console.log('Boxes packed:', boxes);
-  // }, [boxes]);
+  useEffect(() => {
+    console.log('Boxes:', boxes);
+  }, [boxes]);
 
   return (
     <div className="App">
@@ -56,7 +55,7 @@ function App() {
         </div>
 
         <div className="rightField">
-          <h2>Starage</h2>
+          <h2>Storage</h2>
           <BoxStorage items={storage} />
         </div>
       </div>
