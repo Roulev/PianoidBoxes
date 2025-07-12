@@ -1,11 +1,23 @@
-.box-storage {
-  padding: 10px;
+.storage-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
 }
 
-.stored-item {
-  width: 80%;
-  margin-bottom: 8px;
-  padding: 6px 10px;
-  background-color: #e0e0e0;
-  border-radius: 6px;
+.storage-item {
+  padding: 8px 12px;
+  background-color: #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.storage-item:hover {
+  background-color: #ddd;
+}
+
+.storage-item.selected {
+  background-color: #87cefa; 
 }

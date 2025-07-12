@@ -27,7 +27,7 @@ function BoxVisualizer({ boxes, stringLength, onDoubleClick }) {
                     onDoubleClick?.([stringNumber, point], itemIdx, boxIdx)
                   }
                 >
-                  {point}
+                  string: {stringNumber}, point: {point}
                 </div>
               );
             })}

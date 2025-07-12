@@ -16,27 +16,32 @@ function App() {
   const [boxes, setBoxes] = useState(data); // Initialize with test data
   const [storage, setStorage] = useState([]); // Storage for moved items
 
+  const [selectedStorageBox, setSelectedStorageBox] = useState(null);
+
   const [sumLength, setSumLength] = useState(384);
 
   const handleMoveToStorage = (item, itemIdx, boxIdx) => {
-    // Add item in Storage
-    setStorage((prev) => [...prev, item]);
+    setStorage((prev) => [...prev, item]); // Add item in Storage
 
     // Updating boxes
     setBoxes((prevBoxes) => {
       return prevBoxes.map((box, idx) => {
         if (idx !== boxIdx) return box;
 
-        // Delete item by index
-        const newMatrix = box.filter((_, i) => i !== itemIdx);
+        const newMatrix = box.filter((_, i) => i !== itemIdx); // Delete item by index
         return newMatrix;
       });
     });
   };
 
-  useEffect(() => {
-    console.log('Boxes:', boxes);
-  }, [boxes]);
+  const handleStorageClick = (index) => {
+    setSelectedStorageBox((prev) => (prev === index ? null : index));
+    
+  };
+
+  // useEffect(() => {
+  //   console.log('Boxes:', boxes);
+  // }, [boxes]);
 
   return (
     <div className="App">
@@ -56,7 +61,11 @@ function App() {
 
         <div className="rightField">
           <h2>Storage</h2>
-          <BoxStorage items={storage} />
+          <BoxStorage
+            items={storage}
+            selectedStorageBox={selectedStorageBox}
+            onClickItem={handleStorageClick}
+          />
         </div>
       </div>
     </div>
