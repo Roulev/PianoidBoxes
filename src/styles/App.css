@@ -14,14 +14,14 @@
 
 .topBar {
   display: flex;
-  height: 5%;
+  height: 3%;
   width: 100%;
   background-color: #f3efef;
 }
 
 .container {
   display: flex;  
-  height: 95%;
+  height: 97%;
   width: 100%;
   background-color: #edb649;
 }
@@ -29,7 +29,7 @@
 .leftField {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 80%;
   height: 100%;
   background-color: #87ed7f;
 }
@@ -39,7 +39,7 @@
 .rightField {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 20%;
   height: 100%;
   background-color: #e55036;
 }

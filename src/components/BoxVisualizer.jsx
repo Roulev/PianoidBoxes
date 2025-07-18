@@ -1,19 +1,25 @@
 import '../styles/BoxVisualizer.css';
 
-function BoxVisualizer({ boxes, stringLength, onDoubleClick }) {
+function BoxVisualizer({ boxes, stringLength, onDoubleClick, onBoxDoubleClick }) {
   return (
     <div className="box-container">
       {boxes.map((box, boxIdx) => {
-        const matrix = box;
-        const totalLength = matrix.reduce((sum, item) => sum + item.length, 0);
+        const totalLength = box.reduce((sum, item) => sum + item.length, 0);
         const isLastTooBig = totalLength > stringLength;
 
         return (
-          <div className="box" key={boxIdx}>
-            {matrix.map((item, itemIdx) => {
-              const isLast = itemIdx === matrix.length - 1;
+          <div
+            className="box"
+            key={boxIdx}
+            onDoubleClick={() => onBoxDoubleClick(boxIdx)}
+          >
+            {box.map((item, itemIdx) => {
+              const isLast = itemIdx === box.length - 1;
               const isRed = isLast && isLastTooBig;
-              const style = { width: `${(item.length * 100) / stringLength}%` };
+
+              const style = {
+                width: `${(item.length * 100) / stringLength}%`,
+              };
 
               return (
                 <div
@@ -21,7 +27,9 @@ function BoxVisualizer({ boxes, stringLength, onDoubleClick }) {
                   className={`item ${isRed ? 'item-red' : 'item-green'}`}
                   style={style}
                   title={`ID: ${item.ID}, length: ${item.length}`}
-                  onDoubleClick={() => onDoubleClick?.(item, itemIdx, boxIdx)}
+                  onDoubleClick={() =>
+                    onDoubleClick?.(item, itemIdx, boxIdx)
+                  }
                 >
                   ID: {item.ID}, length: {item.length}
                 </div>
