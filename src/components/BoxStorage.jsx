@@ -3,14 +3,14 @@ import '../styles/BoxStorage.css';
 function BoxStorage({ items, selectedStorageBox, onClickItem }) {
   return (
     <div className="storage-container">
-      {items.map(([stringNumber, point], index) => (
+      {items.map((item, index) => (
         <div
           key={index}
           className={`storage-item ${index === selectedStorageBox ? 'selected' : ''}`}
           onClick={() => onClickItem(index)}
-          title={`string: ${stringNumber}, point: ${point}`}
+          title={`ID: ${item.ID}, length: ${item.length}`}
         >
-          {point}
+          ID: {item.ID}, length: {item.length}
         </div>
       ))}
     </div>
