@@ -35,3 +35,8 @@
 .item-red {
   background-color: #ff0000;
 }
+
+.free-space-highlight {
+  height: 100%;
+  background-color: rgba(45, 132, 225, 0.3);
+}

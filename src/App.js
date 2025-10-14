@@ -8,7 +8,7 @@ function generateTestData() {
   const data = [];
 
   let id = 0;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 16; i++) {
     const group = [];
     for (let j = 0; j < 4; j++) {
       group.push({ ID: id++, length: rand(10, 100) });
